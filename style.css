@@ -49,6 +49,18 @@ h1 {
   line-height: 1.8;
 }
 
+/* Past letters 标题 + 分隔线 */
+.past-heading {
+  margin-top: 72px;               /* 和正文拉开一点距离 */
+  padding-top: 16px;              /* 让标题和分隔线之间有一点呼吸空间 */
+  border-top: 1px solid rgba(240, 230, 246, 0.25);  /* 上方那条浅浅的线 */
+
+  font-size: 0.9rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+}
+
 /* 今天的信整体块 */
 .today-letter {
   margin-bottom: 32px;
