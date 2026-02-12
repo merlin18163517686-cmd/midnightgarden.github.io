@@ -90,6 +90,56 @@ h1 {
   margin-bottom: 6px;
 }
 
+/* Past letters 标题 */
+.past-heading {
+  margin-top: 56px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(240, 230, 246, 0.75);
+  position: relative;
+  padding-top: 24px;
+}
+
+/* Past letters 上面那条细细的分隔线 */
+.past-heading::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(240, 230, 246, 0.1),
+    rgba(240, 230, 246, 0.7)
+  );
+}
+
+/* 每一封过去的信 */
+.past-letter {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(240, 230, 246, 0.08);
+}
+
+/* 过去信件上方的小日期 */
+.past-date {
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(240, 230, 246, 0.6);
+  margin-bottom: 6px;
+}
+
+/* 今天的信 和 过去的信 里 <pre> 的换行 & 外边距 */
+.today-letter pre,
+.past-letter pre {
+  white-space: pre-wrap;
+  margin: 0;
+}
+
 /* 渐入动画 */
 @keyframes fadeIn {
   from {
