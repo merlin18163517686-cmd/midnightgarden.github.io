@@ -18,6 +18,24 @@ body {
   overflow-x: hidden; /* 防止横向滚动条 */
 }
 
+/* 夜空里的小星星层 */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;           /* 不挡住你点东西 */
+  opacity: 0.45;
+
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, rgba(255, 255, 255, 0.7), transparent 60%),
+    radial-gradient(1.6px 1.6px at 80% 20%, rgba(255, 255, 255, 0.6), transparent 60%),
+    radial-gradient(1.4px 1.4px at 10% 70%, rgba(255, 255, 255, 0.5), transparent 60%),
+    radial-gradient(1.8px 1.8px at 60% 80%, rgba(255, 255, 255, 0.65), transparent 60%),
+    radial-gradient(1.3px 1.3px at 40% 50%, rgba(255, 255, 255, 0.55), transparent 60%);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 /* 顶部标题区域（小月亮 + Midnight Garden） */
 .container {
   text-align: center;
