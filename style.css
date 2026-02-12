@@ -64,3 +64,65 @@ h1 {
     transform: translateY(0);
   }
 }
+
+/* 小月亮单独调一下大小 */
+.moon {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+/* 整体内容区域 */
+#content {
+  width: 100%;
+}
+
+/* 往日信件区块的整体布局 */
+#archive-section {
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto 80px;
+  padding: 0 24px 40px;
+  box-sizing: border-box;
+}
+
+/* Past letters 标题 */
+#archive-section h2 {
+  margin: 0 0 16px;
+  font-size: 0.95rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+/* 每一封旧信的外框 */
+.archive-entry {
+  padding-top: 12px;
+  margin-top: 12px;
+  border-top: 1px solid rgba(240, 230, 246, 0.16);
+}
+
+/* 日期行 */
+.archive-date {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-bottom: 4px;
+}
+
+/* 旧信正文 */
+.archive-body {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  white-space: pre-wrap; /* 让 \n 变成真正的换行 */
+  text-align: left;
+}
+
+/* 手机端稍微收窄一点内边距 */
+@media (max-width: 768px) {
+  #letter {
+    padding: 0 18px;
+  }
+
+  #archive-section {
+    padding: 0 18px 32px;
+  }
+}
