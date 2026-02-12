@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Midnight Garden</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- 顶部标题区 -->
     <div class="container">
-        <h1>🌙 Midnight Garden</h1>
-        <p id="letter">Loading today’s letter...</p>
+      <div class="moon">🌙</div>
+      <h1>Midnight Garden</h1>
     </div>
+
+    <!-- 内容区：今天的信 + 往日信件 -->
+    <main id="content">
+      <!-- 今天的信 -->
+      <section id="today-section">
+        <div id="letter" class="empty-message">
+          Loading today's letter...
+        </div>
+      </section>
+
+      <!-- 往日信件 -->
+      <section id="archive-section">
+        <h2>Past letters</h2>
+        <div id="past-letters"></div>
+      </section>
+    </main>
+
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
