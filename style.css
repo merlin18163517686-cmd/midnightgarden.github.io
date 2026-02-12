@@ -51,14 +51,26 @@ h1 {
 
 /* Past letters 标题 + 分隔线 */
 .past-heading {
-  margin-top: 72px;               /* 和正文拉开一点距离 */
-  padding-top: 16px;              /* 让标题和分隔线之间有一点呼吸空间 */
-  border-top: 1px solid rgba(240, 230, 246, 0.25);  /* 上方那条浅浅的线 */
+  position: relative;
+  margin: 72px 0 24px;       /* 和正文拉开一点距离，底下留 24px 给列表 */
+  padding-top: 16px;         /* 标题和上面的线之间留点空 */
 
   font-size: 0.9rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--accent-color);
+}
+
+/* 在 Past letters 上方画一条横线 */
+.past-heading::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background: rgba(240, 230, 246, 0.55);  /* 比刚才稍微亮一点 */
+  opacity: 0.9;
 }
 
 /* 今天的信整体块 */
