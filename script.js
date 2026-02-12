@@ -1,68 +1,73 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const letterDiv = document.getElementById("letter");
-  const pastContainer = document.getElementById("past-letters");
-  const archiveSection = document.getElementById("archive-section");
+// script.js
 
-  fetch("letters.json")
-    .then((response) => response.json())
-    .then((data) => {
-      const today = new Date();
-      const todayStr = today.toISOString().slice(0, 10); // YYYY-MM-DD
+document.addEventListener('DOMContentLoaded', () => {
+  const letterBox = document.getElementById('letter');
 
-      // 把所有信按日期排好
-      const entries = Object.entries(data).sort((a, b) =>
-        a[0].localeCompare(b[0])
-      );
+  // 把今天的日期变成 "YYYY-MM-DD" 格式（用本地时间）
+  function getTodayKey() {
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = String(now.getMonth() + 1).padStart(2, '0');
+    const d = String(now.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+  }
 
-      // 1. 今天这封
-      const todayLetter = data[todayStr];
+  fetch('letters.json')
+    .then(res => res.json())
+    .then(letters => {
+      const todayKey = getTodayKey();
+      const allDates = Object.keys(letters).sort(); // 升序排列日期
+      letterBox.innerHTML = '';
 
-      if (todayLetter) {
-        letterDiv.textContent = todayLetter;
-        letterDiv.classList.remove("empty-message");
+      // === 今天的信 ===
+      const todayText = letters[todayKey];
+
+      if (todayText) {
+        const todayBlock = document.createElement('div');
+        todayBlock.className = 'today-letter';
+
+        const pre = document.createElement('pre');
+        pre.textContent = todayText;  // 保留换行
+        todayBlock.appendChild(pre);
+
+        letterBox.appendChild(todayBlock);
       } else {
-        // 没有就显示一条安慰信息
-        letterDiv.textContent =
-          "No letter for this date yet...\n\nBut this little garden is still here, waiting for you to come back and rest for a moment.";
-        letterDiv.classList.add("empty-message");
+        const p = document.createElement('p');
+        p.className = 'empty-message';
+        p.textContent = 'No letter today…';
+        letterBox.appendChild(p);
       }
 
-      // 2. 往日信件列表
-      if (!pastContainer || !archiveSection) return;
+      // === 过去的信 ===
+      const pastDates = allDates.filter(date => date < todayKey);
 
-      // 只拿今天之前的信（避免重复显示今天）
-      const pastEntries = entries.filter(([date]) => date < todayStr);
+      if (pastDates.length) {
+        const heading = document.createElement('h2');
+        heading.className = 'past-heading';
+        heading.textContent = 'Past letters';
+        letterBox.appendChild(heading);
 
-      if (pastEntries.length === 0) {
-        // 还没有历史信件，就把整个区块藏起来
-        archiveSection.style.display = "none";
-        return;
+        // 让最近的在最上面
+        pastDates.reverse().forEach(date => {
+          const block = document.createElement('div');
+          block.className = 'past-letter';
+
+          const dateLine = document.createElement('div');
+          dateLine.className = 'past-date';
+          dateLine.textContent = date;
+          block.appendChild(dateLine);
+
+          const pre = document.createElement('pre');
+          pre.textContent = letters[date];
+          block.appendChild(pre);
+
+          letterBox.appendChild(block);
+        });
       }
-
-      // 最新的在上面显示
-      pastEntries.reverse();
-
-      pastEntries.forEach(([date, text]) => {
-        const entry = document.createElement("div");
-        entry.className = "archive-entry";
-
-        const dateEl = document.createElement("div");
-        dateEl.className = "archive-date";
-        dateEl.textContent = date.replace(/-/g, ".");
-
-        const bodyEl = document.createElement("div");
-        bodyEl.className = "archive-body";
-        bodyEl.textContent = text; // 保留 \n，由 CSS 里的 pre-wrap 处理换行
-
-        entry.appendChild(dateEl);
-        entry.appendChild(bodyEl);
-        pastContainer.appendChild(entry);
-      });
     })
-    .catch((error) => {
-      console.error("Error loading letters:", error);
-      letterDiv.textContent =
-        "The garden is a bit sleepy and couldn't load today's letter. Try refreshing in a moment.";
-      letterDiv.classList.add("empty-message");
+    .catch(err => {
+      console.error(err);
+      letterBox.innerHTML =
+        '<p class="empty-message">Could not load the letters right now.</p>';
     });
 });
