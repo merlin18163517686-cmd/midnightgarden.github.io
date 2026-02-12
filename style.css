@@ -11,51 +11,41 @@ body {
   min-height: 100vh;
   font-family: Georgia, serif;
   display: flex;
-  flex-direction: column;        /* 从上往下排布 */
-  align-items: center;           /* 居中对齐整块内容 */
+  flex-direction: column;        /* 标题在上，信在下 */
+  align-items: center;
   background: linear-gradient(to bottom, var(--bg-gradient-start), var(--bg-gradient-end));
   color: var(--text-color);
 }
 
-/* 标题区域（包含小月亮和 Midnight Garden 字样） */
+/* 标题区域（包含小月亮和 Midnight Garden） */
 .container {
   text-align: center;
-  padding: 32px 24px 0;          /* 顶部 32px 的空白 */
-  margin-top: 32px;              /* 整体再往上拉一些 */
+  padding: 32px 24px 0;
+  margin-top: 40px;              /* 整块稍微往下放一点点 */
   animation: fadeIn 2s ease-in-out;
 }
 
 /* 主标题 Midnight Garden */
 h1 {
   font-size: 2.6rem;
-  margin: 0;                     /* 先把默认 margin 清掉 */
+  margin: 0;                     /* 清掉默认的 margin */
   letter-spacing: 0.04em;
 }
 
-/* 如果以后想加副标题，可以用这个类 */
-.subtitle {
-  margin-top: 8px;
-  font-size: 0.95rem;
-  opacity: 0.8;
-}
-
-/* 信件外层容器：控制宽度和标题之间的间距 */
-#letter-container {
+/* 信件正文所在的盒子：用 #letter（你现在 HTML 里就是这个） */
+#letter {
   max-width: 720px;
   width: 100%;
-  margin: 56px auto 80px;        /* 跟标题拉开距离（56px） */
-  padding: 0 24px;               /* 两侧内边距 */
-}
-
-/* 信件正文文字样式 */
-#letter-text {
+  margin: 56px auto 80px;        /* 和标题之间拉开 56px 的距离 */
+  padding: 0 24px;
   font-size: 16px;
   line-height: 1.9;
-  text-align: left;
+  text-align: left;              /* 左对齐整封信 */
   white-space: pre-wrap;         /* 让 \n 变成真正的换行 */
+  font-style: normal;            /* 如果想要斜体就改成 italic */
 }
 
-/* “No letter today…” 这种提示也用同一套样式 */
+/* “No letter today…” 用同一套样式，只是居中 */
 .empty-message {
   font-size: 16px;
   line-height: 1.7;
