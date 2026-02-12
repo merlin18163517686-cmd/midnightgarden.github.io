@@ -36,3 +36,23 @@ h1 {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+/* Layout for the letter area */
+#letter-container {
+  max-width: 720px;
+  margin: 80px auto 0;
+  padding: 0 24px 80px;
+}
+
+/* Letter text */
+#letter-text {
+  font-size: 16px;
+  line-height: 1.9;
+  text-align: left;
+  white-space: pre-wrap; /* 把 \n 当成真正的换行 */
+}
+
+/* Title spacing */
+h1 {
+  margin-top: 80px;
+  margin-bottom: 24px;
+}
