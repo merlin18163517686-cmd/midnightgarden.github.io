@@ -16,7 +16,6 @@ body {
   background: linear-gradient(to bottom, var(--bg-gradient-start), var(--bg-gradient-end));
   color: var(--text-color);
   overflow-x: hidden; /* 防止横向滚动条 */
-  position: relative;           /* ✅ 新加的 */
 }
 
 /* 夜空里的小星星层 */
@@ -24,18 +23,17 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  pointer-events: none;
-  z-index: 1;
-
-  opacity: 0.95; /* 亮度，可以之后慢慢调 */
+  pointer-events: none;           /* 不挡住你点东西 */
+  opacity: 0.45;
 
   background-image:
-    radial-gradient(1px 1px at 10% 20%, rgba(255, 255, 255, 0.9), transparent 60%),
-    radial-gradient(1px 1px at 30% 80%, rgba(255, 255, 255, 0.9), transparent 60%),
-    radial-gradient(1px 1px at 70% 30%, rgba(255, 255, 255, 0.9), transparent 60%),
-    radial-gradient(1px 1px at 90% 70%, rgba(255, 255, 255, 0.9), transparent 60%);
-  background-size: 120px 120px;  /* 一块「星星图案」的大小 */
-  background-repeat: repeat;     /* 把这块图案平铺满整屏 */
+    radial-gradient(2px 2px at 20% 30%, rgba(255, 255, 255, 0.7), transparent 60%),
+    radial-gradient(1.6px 1.6px at 80% 20%, rgba(255, 255, 255, 0.6), transparent 60%),
+    radial-gradient(1.4px 1.4px at 10% 70%, rgba(255, 255, 255, 0.5), transparent 60%),
+    radial-gradient(1.8px 1.8px at 60% 80%, rgba(255, 255, 255, 0.65), transparent 60%),
+    radial-gradient(1.3px 1.3px at 40% 50%, rgba(255, 255, 255, 0.55), transparent 60%);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* 顶部标题区域（小月亮 + Midnight Garden） */
@@ -43,8 +41,6 @@ body::before {
   text-align: center;
   padding: 32px 24px 0;
   animation: fadeIn 2s ease-in-out;
-  position: relative;   /* ✅ 新加 */
-  z-index: 2;           /* ✅ 新加 */
 }
 
 /* 顶部小月亮 */
@@ -69,8 +65,76 @@ h1 {
   text-align: left;
   font-size: 16px;
   line-height: 1.8;
-  position: relative;   /* ✅ 新加 */
-  z-index: 2;           /* ✅ 新加 */
+}
+
+/* Past letters 标题 + 分隔线 */
+.past-heading {
+  position: relative;
+  margin: 72px 0 32px;      /* 和正文拉开一点距离，底下再留 32px 给列表 */
+  padding-bottom: 12px;     /* 给文字和分隔线之间留一点空间 */
+
+  font-size: 0.9rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+}
+
+/* 在 Past letters 文字下面画一条横线 */
+.past-heading::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;                             /* 贴着标题的底边 */
+  height: 2px;                           /* 画粗一点，眼睛一定能看到 */
+  background: rgba(255, 255, 255, 0.85); /* 亮一点的“月光线” */
+}
+
+/* 今天的信整体块 */
+.today-letter {
+  margin-bottom: 32px;
+}
+
+/* 所有正文段落 / pre 的统一样式 */
+#letter pre,
+#letter p {
+  white-space: pre-wrap;    /* 让 \n 变成真实换行 */
+  word-wrap: break-word;    /* 很长的英文也会自动换行 */
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.8;
+  margin: 0 0 16px;
+}
+
+/* “今天没有信”的提示 */
+.empty-message {
+  text-align: center;
+  opacity: 0.85;
+}
+
+/* Past letters 标题 */
+.past-heading {
+  margin-top: 56px;
+  margin-bottom: 16px;
+  font-size: 1.05rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+/* 单封过去的信 */
+.past-letter {
+  margin-top: 12px;
+  margin-bottom: 20px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(240, 230, 246, 0.16);
+}
+
+/* 日期行 */
+.past-date {
+  font-size: 0.85rem;
+  opacity: 0.75;
+  margin-bottom: 6px;
 }
 
 /* Past letters 标题 */
@@ -81,7 +145,7 @@ h1 {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(240, 230, 246, 0.75);
-  position: relative;   /* ⭐ 关键：让下面的 ::before 以它为参考 */
+  position: relative;
   padding-top: 24px;
 }
 
