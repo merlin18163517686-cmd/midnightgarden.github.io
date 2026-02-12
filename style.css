@@ -1,58 +1,76 @@
 :root {
-    --bg-gradient-start: #1a1a2e;
-    --bg-gradient-end: #16213e;
-    --text-color: #f0e6f6;
-    --accent-color: #a29bfe;
+  --bg-gradient-start: #1a1a2e;
+  --bg-gradient-end: #16213e;
+  --text-color: #f0e6f6;
+  --accent-color: #a29bfe;
 }
 
+/* 整个页面背景 + 布局 */
 body {
-    margin: 0;
-    height: 100vh;
-    font-family: Georgia, serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(to bottom, var(--bg-gradient-start), var(--bg-gradient-end));
-    color: var(--text-color);
+  margin: 0;
+  min-height: 100vh;
+  font-family: Georgia, serif;
+  display: flex;
+  flex-direction: column;        /* 从上往下排布 */
+  align-items: center;           /* 居中对齐整块内容 */
+  background: linear-gradient(to bottom, var(--bg-gradient-start), var(--bg-gradient-end));
+  color: var(--text-color);
 }
 
+/* 标题区域（包含小月亮和 Midnight Garden 字样） */
 .container {
-    text-align: center;
-    padding: 20px;
-    animation: fadeIn 2s ease-in-out;
+  text-align: center;
+  padding: 32px 24px 0;          /* 顶部 32px 的空白 */
+  margin-top: 32px;              /* 整体再往上拉一些 */
+  animation: fadeIn 2s ease-in-out;
 }
 
+/* 主标题 Midnight Garden */
 h1 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
+  font-size: 2.6rem;
+  margin: 0;                     /* 先把默认 margin 清掉 */
+  letter-spacing: 0.04em;
 }
 
-#letter {
-    font-size: 1.2em;
-    font-style: italic;
+/* 如果以后想加副标题，可以用这个类 */
+.subtitle {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  opacity: 0.8;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-/* Layout for the letter area */
+/* 信件外层容器：控制宽度和标题之间的间距 */
 #letter-container {
   max-width: 720px;
-  margin: 80px auto 0;
-  padding: 0 24px 80px;
+  width: 100%;
+  margin: 56px auto 80px;        /* 跟标题拉开距离（56px） */
+  padding: 0 24px;               /* 两侧内边距 */
 }
 
-/* Letter text */
+/* 信件正文文字样式 */
 #letter-text {
   font-size: 16px;
   line-height: 1.9;
   text-align: left;
-  white-space: pre-wrap; /* 把 \n 当成真正的换行 */
+  white-space: pre-wrap;         /* 让 \n 变成真正的换行 */
 }
 
-/* Title spacing */
-h1 {
-  margin-top: 80px;
-  margin-bottom: 24px;
+/* “No letter today…” 这种提示也用同一套样式 */
+.empty-message {
+  font-size: 16px;
+  line-height: 1.7;
+  text-align: center;
+  opacity: 0.85;
+}
+
+/* 渐入动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
