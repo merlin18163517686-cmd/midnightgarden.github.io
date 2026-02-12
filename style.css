@@ -1,0 +1,25 @@
+body {
+  background: #1a1a2e;
+  color: #fefefe;
+  font-family: "Georgia", serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+.container {
+  max-width: 600px;
+  padding: 30px;
+  background: #282846;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+#letter-box {
+  white-space: pre-line;
+  line-height: 1.6;
+}

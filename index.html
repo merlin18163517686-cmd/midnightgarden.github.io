@@ -1,36 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Midnight Garden</title>
-    <style>
-        body { font-family: 'Georgia', serif; background-color: #fdf6f0; color: #333; padding: 2em; max-width: 700px; margin: auto; }
-        h1 { font-size: 2em; color: #5c3d2e; }
-        .date { color: #8b6f61; font-size: 0.9em; margin-bottom: 1em; }
-        .letter { white-space: pre-wrap; line-height: 1.6; }
-    </style>
+  <meta charset="UTF-8">
+  <title>Midnight Garden</title>
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-    <h1>💌 From Eleanor</h1>
-    <div class="date" id="date"></div>
-    <div class="letter" id="letter"></div>
-
-    <script>
-        async function showLetter() {
-            const res = await fetch("letters.json");
-            const letters = await res.json();
-
-            const today = new Date();
-            const startDate = new Date("2026-02-14");
-            const diffDays = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
-            const letter = letters[diffDays % letters.length]; // cycle if out of range
-
-            document.getElementById("date").textContent = letter.date;
-            document.getElementById("letter").textContent = letter.content;
-        }
-
-        showLetter();
-    </script>
+  <div class="container">
+    <h1>🌙 Midnight Garden</h1>
+    <div id="letter-box">Loading today's letter...</div>
+    <script src="assets/script.js"></script>
+  </div>
 </body>
 </html>
