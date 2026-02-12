@@ -21,7 +21,7 @@ body {
 /* 顶部标题区域（小月亮 + Midnight Garden） */
 .container {
   text-align: center;
-  padding: 60px 60px 0;
+  padding: 240px 240px 0;
   animation: fadeIn 2s ease-in-out;
 }
 
