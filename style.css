@@ -5,52 +5,89 @@
   --accent-color: #a29bfe;
 }
 
-/* 整个页面背景 + 布局 */
+/* 页面背景 + 全局字体 */
 body {
   margin: 0;
   min-height: 100vh;
   font-family: Georgia, serif;
   display: flex;
-  flex-direction: column;        /* 标题在上，信在下 */
+  flex-direction: column;
   align-items: center;
   background: linear-gradient(to bottom, var(--bg-gradient-start), var(--bg-gradient-end));
   color: var(--text-color);
+  overflow-x: hidden; /* 防止横向滚动条 */
 }
 
-/* 标题区域（包含小月亮和 Midnight Garden） */
+/* 顶部标题区域（小月亮 + Midnight Garden） */
 .container {
   text-align: center;
-  padding: 32px 24px 0;
-  margin-top: 40px;              /* 整块稍微往下放一点点 */
+  padding: 40px 24px 0;
   animation: fadeIn 2s ease-in-out;
 }
 
-/* 主标题 Midnight Garden */
+/* 主标题 */
 h1 {
   font-size: 2.6rem;
-  margin: 0;                     /* 清掉默认的 margin */
-  letter-spacing: 0.04em;
+  margin: 0;
+  letter-spacing: 0.05em;
 }
 
-/* 信件正文所在的盒子：用 #letter（你现在 HTML 里就是这个） */
+/* 今天的信 + 过去的信 所在的大容器 */
 #letter {
-  max-width: 720px;
+  max-width: 760px;
   width: 100%;
-  margin: 56px auto 80px;        /* 和标题之间拉开 56px 的距离 */
+  margin: 48px auto 72px;
   padding: 0 24px;
+  text-align: left;
   font-size: 16px;
-  line-height: 1.9;
-  text-align: left;              /* 左对齐整封信 */
-  white-space: pre-wrap;         /* 让 \n 变成真正的换行 */
-  font-style: normal;            /* 如果想要斜体就改成 italic */
+  line-height: 1.8;
 }
 
-/* “No letter today…” 用同一套样式，只是居中 */
-.empty-message {
+/* 今天的信整体块 */
+.today-letter {
+  margin-bottom: 32px;
+}
+
+/* 所有正文段落 / pre 的统一样式 */
+#letter pre,
+#letter p {
+  white-space: pre-wrap;    /* 让 \n 变成真实换行 */
+  word-wrap: break-word;    /* 很长的英文也会自动换行 */
+  font-family: inherit;
   font-size: 16px;
-  line-height: 1.7;
+  line-height: 1.8;
+  margin: 0 0 16px;
+}
+
+/* “今天没有信”的提示 */
+.empty-message {
   text-align: center;
   opacity: 0.85;
+}
+
+/* Past letters 标题 */
+.past-heading {
+  margin-top: 56px;
+  margin-bottom: 16px;
+  font-size: 1.05rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+/* 单封过去的信 */
+.past-letter {
+  margin-top: 12px;
+  margin-bottom: 20px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(240, 230, 246, 0.16);
+}
+
+/* 日期行 */
+.past-date {
+  font-size: 0.85rem;
+  opacity: 0.75;
+  margin-bottom: 6px;
 }
 
 /* 渐入动画 */
@@ -63,97 +100,4 @@ h1 {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-/* 小月亮单独调一下大小 */
-.moon {
-  font-size: 2.2rem;
-  margin-bottom: 10px;
-}
-
-/* 整体内容区域 */
-#content {
-  width: 100%;
-}
-
-/* 往日信件区块的整体布局 */
-#archive-section {
-  max-width: 720px;
-  width: 100%;
-  margin: 0 auto 80px;
-  padding: 0 24px 40px;
-  box-sizing: border-box;
-}
-
-/* Past letters 标题 */
-#archive-section h2 {
-  margin: 0 0 16px;
-  font-size: 0.95rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  opacity: 0.8;
-}
-
-/* 每一封旧信的外框 */
-.archive-entry {
-  padding-top: 12px;
-  margin-top: 12px;
-  border-top: 1px solid rgba(240, 230, 246, 0.16);
-}
-
-/* 日期行 */
-.archive-date {
-  font-size: 0.85rem;
-  opacity: 0.8;
-  margin-bottom: 4px;
-}
-
-/* 旧信正文 */
-.archive-body {
-  font-size: 0.95rem;
-  line-height: 1.8;
-  white-space: pre-wrap; /* 让 \n 变成真正的换行 */
-  text-align: left;
-}
-
-/* 手机端稍微收窄一点内边距 */
-@media (max-width: 768px) {
-  #letter {
-    padding: 0 18px;
-  }
-
-  #archive-section {
-    padding: 0 18px 32px;
-  }
-}
-
-/* Past letters 标题 */
-.past-heading {
-  margin-top: 64px;
-  margin-bottom: 24px;
-  font-size: 1.3rem;
-  font-weight: bold;
-}
-
-/* 所有信件正文（包括今天和过去）都用同一种排版 */
-#letter pre {
-  white-space: pre-wrap;    /* 让 \n 变成真实换行 */
-  font-family: inherit;     /* 用和正文一样的字体 */
-  font-size: 16px;
-  line-height: 1.9;
-  margin: 0 0 24px;
-}
-
-/* 单封过去的信 */
-.past-letter {
-  margin-bottom: 32px;
-  border-top: 1px solid rgba(240, 230, 246, 0.15);
-  padding-top: 16px;
-}
-
-/* 日期行 */
-.past-date {
-  font-size: 0.9rem;
-  opacity: 0.8;
-  margin-bottom: 8px;
 }
